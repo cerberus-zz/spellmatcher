@@ -30,7 +30,9 @@ class Server(object):
             controller = controller_type()
             controller.register_routes(d)
 
-        return d
+        dispatcher = d
+        return dispatcher
+
 
     @classmethod
     def start(cls):
@@ -74,5 +76,4 @@ class Server(object):
 if __name__ == '__main__':
     server = Server()
     sys.exit(server.start())
-
 

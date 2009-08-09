@@ -15,11 +15,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from spellmatcher.controllers.base import Controller, route
+from spellmatcher.controllers.base import Controller, route, url
 
 class HomeController(Controller):
 
-    @route("/")
+    @route("/home")
     def index(self):
-        return self.render_to_response("test")
+        paths = []
+        paths.append(self.url_for(action="index"))
+        paths.append(self.url_for(url="something"))
+        paths.append(self.url_for(controller="OtherController", action="index"))
+        paths.append(self.url_for(controller=OtherController, action="index"))
+        
+        links = ["<a href='%s'>%s</a>" % (action_url, action_url) for action_url in paths]
+        return self.render_to_response("<br />".join(links))
+
+class OtherController(Controller):
+    @route("/other")
+    def index(self):
+        paths = []
+        paths.append(url.home.index())
+        paths.append(url("something"))
+        paths.append(url.other.index())
+        
+        links = ["<a href='%s'>%s</a>" % (action_url, action_url) for action_url in paths]
+        return self.render_to_response("<br />".join(links))
 
