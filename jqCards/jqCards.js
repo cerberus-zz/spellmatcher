@@ -55,22 +55,31 @@ jQuery.fn.jqCards = function(options) {
 		$hand.css('position','absolute');
 		$hand.css('left', settings.position[0] + 'px');
 		$hand.css('top', settings.position[1] + 'px');
-		//$hand.css('width', (settings.cards.length * settings.thumbWidth) + 'px');
-		$hand.css('width', '900px');
-
-		console.info($hand);
+		$hand.css('width', ((settings.cards.length + 1) * settings.thumbWidth) + 'px');
+		//$hand.css('width', '900px');
 		
 		$.each(settings.cards, function(){
 			card = this;
 			cardTitle = card.title;
 			cardPath = card.src;
-			imgStyle = 'margin-left:2px; margin-right:2px; width:' + settings.thumbWidth + 'px; height:' + settings.thumbHeight + 'px;';
-			$img = $('<img border="0" style="' + imgStyle + '" src="' + cardPath + '" title="' + cardTitle + '" />');
-			$img.click(function(){
-				img = $(this);
+			$div = $('<div style="float:left;position:relative;"><div style="position:absolute;top:4px;right:4px;" class="toolbar"></div></div>');
+			$toolbar = $('.toolbar', $div);
+			$magnify = $('<img border="0" src="magnifier.png" />');
+			$play = $('<img border="0" src="arrow_up.png" />');
+			$tap = $('<img border="0" src="arrow_turn_right.png" />');
+			$toolbar.append($magnify);
+			$toolbar.append($play);
+			$toolbar.append($tap);
+			$magnify.click(function(){
+				magnify = $(this);
+				img = $('img.card', magnify.parent().parent());
 				$.sub.publish('card.zoomedIn', {hand:$hand, src:img});
 			});
-			$hand.append($img);
+			imgStyle = 'margin-left:2px; margin-right:2px; width:' + settings.thumbWidth + 'px; height:' + settings.thumbHeight + 'px;';
+			$img = $('<img class="card" border="0" style="' + imgStyle + '" src="' + cardPath + '" title="' + cardTitle + '" />');
+			$div.append($img)
+			
+			$hand.append($div);
 		});
 		
 		
