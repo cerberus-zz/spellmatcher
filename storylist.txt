@@ -1,0 +1,131 @@
+SpellMatcher - Stories
+
+Story 1
+Como um usuário
+Eu quero poder me registrar gratuitamente
+Para que eu possa utilizar o serviço
+
+Story 2
+Como um usuário
+Eu quero poder me logar no site
+Para que eu possa acessar as funções da minha conta
+
+Story 3
+Como um administrador
+Eu quero poder bloquear/desbloquear a conta de um usuário
+Para evitar spammers e mal intencionados
+
+Story 4
+Como um usuário
+Eu quero ver o ranking de jogadores por validade (Standard, Extended, etc) e tipo de jogo (Free-for-all, Two-Headed, Emperor, etc)
+Para que eu possa competir e chegar ao top 10 na modalidade que eu quiser
+
+Story 5
+Como um usuário
+Eu quero poder ver minha posição no ranking em cada modalidade
+Para que eu saiba quanto falta para chegar ao topo da modalidade que eu quiser
+
+Story 6
+Como um usuário 
+Eu quero poder criar decks
+Para que eu possa jogar contra outros jogadores
+
+Story 7
+Como um usuário
+Eu quero saber estatísticas dos meus decks, como mana por turno e quantidade de cartas por mana
+Para que eu possa melhor balanceá-los
+
+Story 8
+Como um usuário 
+Eu quero poder pesquisar cartas no site
+Para que eu possa saber mais detalhes de uma determinada carta (legalidade, texto, imagem, etc)
+
+Story 9
+Como um usuário
+Eu quero ver quais decks usam a carta que eu pesquisei
+Para que eu possa achar outras idéias que usem esta carta
+
+Story 10
+Como um usuário
+Eu quero poder comentar no deck de outros jogadores
+Para que eu possa interagir com outros jogadores e melhorar meus decks
+
+Story 11
+Como um usuário
+Eu quero ver as X cartas mais usadas em combinação com a carta que eu estou vendo (excluindo terrenos básicos)
+Para ter idéias sobre combos interessantes
+
+Story 12
+Como um usuário
+Eu quero ver as salas de jogo já criadas com seus títulos e modalidades de jogo
+Para que eu possa entrar nelas para jogar
+
+Story 13
+Como um usuário
+Eu quero criar minha própria sala de jogo com minhas configurações
+Para que eu possa jogar um jogo do meu jeito
+
+Story 14
+Como um usuário
+Eu quero jogar uma partida de magic Contra outro(s) usuários do site
+Para me divertir
+
+Story 15
+Como um usuário
+Eu quero poder comprar um deck inteiro (meu ou de outro usuário)
+Para que eu possa jogar na vida real com o deck desejado
+
+Story 16
+Como um usuário
+Eu quero poder ver as cotações de uma carta nos parceiros da spellmatcher e outros players que estejam vendendo (Story 17)
+Para que eu possa comprar esta carta
+
+Story 17
+Como um usuário
+Eu quero poder vender uma carta minha no spellmatcher
+Para ganhar dinheiro com cartas que não uso mais
+
+Story 18
+Como um usuário
+Eu quero poder trocar uma(s) carta(s) minha(s) no spellmatcher por outra(s) que eu desejo
+Para ter a(s) carta(s) que eu preciso sem ter que comprar
+
+Story 19
+Como um usuário
+Eu quero poder ver as cartas a venda no site por usuários
+Para que eu possa ver se vale a pena comprar direto de usuários ao invés dos parceiros
+
+Story 20
+Como um usuário
+Eu quero poder ver as trocas disponíveis no site
+Para que eu possa ver se tenho as cartas requisitadas por outro jogador e quero as que ele oferece
+
+Story 21
+Como um usuário
+Eu quero poder pesquisar decks
+Para achar um deck interessante
+
+Story 22
+Como um administrador
+Eu quero poder ver as compras feitas no site
+Para poder verificar o status de cada uma
+
+Story 23
+Como um administrador
+Eu quero gerenciar cartas disponíveis
+Para que os jogadores possam utilizá-las
+
+Story 24
+Como um administrador
+Eu quero poder gerenciar notícias para o "blog" do site
+Para que os usuários saibam o que está rolando com o Spellmatcher
+
+Story 25
+Como um administrador
+Eu quero poder gerenciar cotações de cartas de parceiros
+Para que os usuários tenham cotações atualizadas
+
+Story 26
+Como um usuário
+Eu quero poder dar uma nota de transação (compra/troca) para um usuário
+Para que no futuro outros usuários possam saber a taxa de confiança de um usuário

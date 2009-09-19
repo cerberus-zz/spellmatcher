@@ -30,16 +30,20 @@ report_success:
 
 compile: clean
 	@echo "Compiling source code..."
-	@python -m compileall ${src_dir} >> ${compile_log_file} 2>> ${compile_log_file}
+	@python -m compileall ${src_dir}
 
 unit: compile
 	@echo "Running unit tests..."
 	nosetests -d -s --verbose --with-coverage --cover-package=spellmatcher ${unit_tests_dir}
-	
+
 func: compile
 	@echo "Running unit tests..."
 	nosetests -d -s --verbose --with-coverage --cover-package=spellmatcher ${functional_tests_dir}
-	
+
+acceptance: compile
+	@echo "Running unit tests..."
+	pyccuracy_console -l pt-br -u 'http://localhost:4000' -d '/tests/acceptance'
+
 run:
 	@PYTHONPATH=$$PYTHONPATH:${root_dir} python ${src_dir}/infra/server.py
-	
+

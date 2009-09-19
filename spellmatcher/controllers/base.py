@@ -1,20 +1,6 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-# Copyright Bernardo Heynemann <heynemann@gmail.com>
-
-# Licensed under the Open Software License ("OSL") v. 3.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-
-#     http://www.opensource.org/licenses/osl-3.0.php
-
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import routes
 import cherrypy
 
@@ -50,9 +36,16 @@ class MetaController(type):
 
         super(MetaController, cls).__init__(name, bases, attrs)
 
+def get_controller_name(controller):
+    return controller.lower().replace("controller", "")
+
+def urlify(url):
+    return url.startswith("http") and url or cherrypy.url(url)
+
 class Controller(object):
     __metaclass__ = MetaController
     __routes__ = None
+    context = None
     
     @classmethod
     def all(self):
@@ -60,7 +53,7 @@ class Controller(object):
 
     def register_routes(self, dispatcher):
         for route in self.__routes__:
-            route_name = "%s_%s" % (self.__class__.__name__.lower().replace("controller", ""), route[0])
+            route_name = "%s_%s" % (get_controller_name(self.__class__.__name__), route[0])
             dispatcher.connect(route_name, route[1]["route"], controller=self, action=route[1]["method"])
     
     def render_to_response(self, response):
@@ -73,9 +66,9 @@ class Controller(object):
             controller = controller.__name__
 
         if not action:
-            return cherrypy.url(url)
+            return urlify(url)
         
-        return cherrypy.url(routes.url_for(controller="%s_%s" % (controller.lower().replace("controller", ""), action), *args, **kw))
+        return urlify(routes.url_for(controller="%s_%s" % (get_controller_name(controller), action), *args, **kw))
 
 class _ctrlchain(object):
  
@@ -88,7 +81,7 @@ class _ctrlchain(object):
  
     def __getattr__(self, attr):
         return _ctrlchain(attr, self.chain)
- 
+
     def __call__(self, *args, **kwargs):
         if len(self.chain) > 3:
             raise Exception("Don't know what to do with over 3 chain elements")
@@ -96,11 +89,11 @@ class _ctrlchain(object):
             action = self.chain[2]
         if len(self.chain) > 1:
             controller = self.chain[1]
- 
+
         if len(args) == 1 and len(kwargs) == 0 and type(args[0]) in (str, unicode):
-            return cherrypy.url(args[0])
+            return urlify(args[0])
         else:
-            return cherrypy.url(routes.url_for(controller="%s_%s" % (controller.lower().replace("controller", ""), action), *args, **kwargs))
+            return urlify(routes.url_for(controller="%s_%s" % (get_controller_name(controller), action), *args, **kwargs))
  
 url = _ctrlchain('urlgen')
 
