@@ -16,7 +16,7 @@ class HomeController(Controller):
         paths.append(self.url_for(controller=OtherController, action="index"))
         
         links = ["<a href='%s'>%s</a>" % (action_url, action_url) for action_url in paths]
-        return self.render_to_response("<br />".join(links))
+        return self.render_template("index.html", links=links)
 
 class OtherController(Controller):
     @route("/other")

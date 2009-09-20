@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/" py:strip="">
+    <py:match path="head" once="true">
+        <head py:attrs="select('@*')">
+            <title py:with="title = list(select('title/text()'))">
+                SpellMatcher<py:if test="title"> - ${title}</py:if>
+            </title>
+<!--            <link rel="stylesheet" href="/media/integrity/css/reset.css" type="text/css" />-->
+<!--            <script src="/media/common/script/lib/jquery-min.js"></script>-->
+            <script language="javascript" type="text/javascript">
+                $(function(){
+                    document.authenticated = '${authenticated}' != '';
+                });
+            </script>
+          ${select('*[local-name()!="title"]')}
+        </head>
+    </py:match>
+
+    <py:match path="body" once="true">
+        <body py:attrs="select('@*')">
+            ${select('*|text()')}
+        </body>
+    </py:match>
+
+</html>

@@ -46,7 +46,11 @@ class Controller(object):
     __metaclass__ = MetaController
     __routes__ = None
     context = None
-    
+
+    @property
+    def authenticated(self):
+        return self.context and self.context.authenticated or False
+
     @classmethod
     def all(self):
         return __CONTROLLERS__
@@ -58,6 +62,11 @@ class Controller(object):
     
     def render_to_response(self, response):
         return response
+
+    def render_template(self, template, render_type='html', doc_type='html', **context):
+        tmpl = self.context.loader.load(template)
+        context.update({'authenticated':self.authenticated})
+        return tmpl.generate(**context).render(render_type, doctype=doc_type)
 
     def url_for(self, controller=None, action=None, url=None, *args, **kw):
         if not controller:
