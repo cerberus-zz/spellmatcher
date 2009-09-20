@@ -43,7 +43,7 @@ class Server(object):
             },
             '/media': {
                 'tools.staticdir.on': True,
-                'tools.staticdir.dir': 'media'
+                'tools.staticdir.dir': 'media/' + ctx.template
             }
         }
 

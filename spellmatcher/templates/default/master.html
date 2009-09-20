@@ -5,8 +5,8 @@
             <title py:with="title = list(select('title/text()'))">
                 SpellMatcher<py:if test="title"> - ${title}</py:if>
             </title>
-<!--            <link rel="stylesheet" href="/media/integrity/css/reset.css" type="text/css" />-->
-<!--            <script src="/media/common/script/lib/jquery-min.js"></script>-->
+            <link rel="stylesheet" href="/media/css/main.css" type="text/css" />
+            <script src="/media/js/jquery-1.3.2.min.js"></script>
             <script language="javascript" type="text/javascript">
                 $(function(){
                     document.authenticated = '${authenticated}' != '';
