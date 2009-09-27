@@ -14,7 +14,7 @@ class HomeController(Controller):
         paths.append(self.url_for(url="http://www.globo.com"))
         paths.append(self.url_for(controller="OtherController", action="index"))
         paths.append(self.url_for(controller=OtherController, action="index"))
-        
+
         links = ["<a href='%s'>%s</a>" % (action_url, action_url) for action_url in paths]
         return self.render_template("index.html", links=links)
 

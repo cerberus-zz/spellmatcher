@@ -1,0 +1,10 @@
+Spellmatcher
+------------
+
+Spellmatcher is an online ranked trade-card-game website. The first version is focused on Magic: The Gathering. 
+Features include managing your own decks with cards directly from the game, playing games against your friends online, participating in rankings for every game mode available in the website, selling and trading cards and much more.
+Keep in touch with what's happening with Spellmatcher by following us on twitter @spellmatcher.
+We'll release every feature as soon as it's done here in the spellmatcher website.
+
+See you in the battlefield!
+Spellmatcher Team
