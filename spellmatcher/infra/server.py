@@ -8,6 +8,7 @@ import cherrypy
 
 from spellmatcher.controllers import *
 from spellmatcher.infra.context import SpellMatcherContext
+from spellmatcher.infra.sqlalchemy_tool import metadata, session, mapper
 
 class Server(object):
     @classmethod
@@ -33,6 +34,10 @@ class Server(object):
                 'tools.decode.on': True,
                 'tools.trailing_slash.on': True,
                 'tools.staticdir.root': ctx.static,
+                'tools.SATransaction.on': True,
+                'tools.SATransaction.dburi': ctx.db_connection,
+                'tools.SATransaction.echo': False,
+                'tools.SATransaction.convert_unicode': True,
                 'log.screen': True,
                 'tools.sessions.on': True
             })

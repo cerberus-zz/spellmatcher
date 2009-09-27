@@ -44,6 +44,12 @@ acceptance: compile
 	@echo "Running unit tests..."
 	pyccuracy_console -l pt-br -u 'http://localhost:4000' -d '/tests/acceptance'
 
+createdb:
+	@db-migrate -c ./spellmatcher/db/simple-db-migrate.conf --drop --color
+
+upgradedb:
+	@db-migrate -c ./spellmatcher/db/simple-db-migrate.conf --color
+
 run:
 	@PYTHONPATH=$$PYTHONPATH:${root_dir} python ${src_dir}/infra/server.py
 
