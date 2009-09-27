@@ -25,7 +25,7 @@ class Server(object):
 
     @classmethod
     def start(cls):
-        ctx = SpellMatcherContext()
+        ctx = SpellMatcherContext(metadata=metadata, session=session, mapper=mapper)
         cherrypy.config.update({
                 'server.socket_host': ctx.host,
                 'server.socket_port': ctx.port,

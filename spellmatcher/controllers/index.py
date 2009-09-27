@@ -2,11 +2,15 @@
 #-*- coding:utf-8 -*-
 
 from spellmatcher.controllers.base import Controller, route, url
+from spellmatcher.models import RegisteredUser
 
 class HomeController(Controller):
 
     @route("/home")
     def index(self):
+        ed_user = RegisteredUser('ed', 'ed@ed.com')
+        self.context.session.add(ed_user)
+
         paths = []
         paths.append(self.url_for(action="index"))
         paths.append(self.url_for(url="something"))

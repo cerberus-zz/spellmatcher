@@ -8,7 +8,7 @@ from ConfigParser import ConfigParser
 from genshi.template import TemplateLoader
 
 class SpellMatcherContext(object):
-    def __init__(self, **kw):
+    def __init__(self, session=None, metadata=None, mapper=None, **kw):
         root_dir = abspath(join(dirname(__file__), '../'))
 
         config = ConfigParser()
@@ -34,6 +34,10 @@ class SpellMatcherContext(object):
 
         for k,v in defaults.iteritems():
             setattr(self, k, v)
+
+        self.session = session
+        self.metadata = metadata
+        self.mapper = mapper
 
         self.load_template_renderer()
 
