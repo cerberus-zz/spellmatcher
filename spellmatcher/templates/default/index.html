@@ -10,6 +10,11 @@
     <body>
         Home Page
 
-        <div py:for="link in links">${HTML(link)}</div>
+        <div class="news">
+            <div py:for="item in news" class="news-item">
+                <div class="news-date">[${item.str_date}]</div>
+                <div class="news-content">${HTML(item.content)}</div>
+            </div>
+        </div>
     </body>
 </html>

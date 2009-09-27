@@ -3,33 +3,34 @@
 
 from spellmatcher.controllers.base import Controller, route, url
 from spellmatcher.models import RegisteredUser
+from spellmatcher.models.feeds import *
 
 class HomeController(Controller):
 
     @route("/home")
     def index(self):
+        feed = Feed("http://twitter.com/statuses/user_timeline/77633129.rss")
+        feed.load()
+
         ed_user = RegisteredUser('ed', 'ed@ed.com')
         self.context.save(ed_user)
 
         paths = []
-        paths.append(self.url_for(action="index"))
-        paths.append(self.url_for(url="something"))
-        paths.append(self.url_for(url="http://%s:%d" % (self.context.host, self.context.port)))
-        paths.append(self.url_for(url="http://www.globo.com"))
-        paths.append(self.url_for(controller="OtherController", action="index"))
-        paths.append(self.url_for(controller=OtherController, action="index"))
 
-        links = ["<a href='%s'>%s</a>" % (action_url, action_url) for action_url in paths]
-        return self.render_template("index.html", links=links)
+        return self.render_template("index.html", news=feed.items)
 
-class OtherController(Controller):
-    @route("/other")
-    def index(self):
-        paths = []
-        paths.append(url.home.index())
-        paths.append(url("something"))
-        paths.append(url.other.index())
-        
-        links = ["<a href='%s'>%s</a>" % (action_url, action_url) for action_url in paths]
-        return self.render_to_response("<br />".join(links))
+#fica comentado só pra ter exemplos do url_for
+#class OtherController(Controller):
+#    @route("/other")
+#    def index(self):
+#        paths = []
+#        paths.append(self.url_for(action="index"))
+#        paths.append(self.url_for(url="something"))
+#        paths.append(self.url_for(url="http://%s:%d" % (self.context.host, self.context.port)))
+#        paths.append(self.url_for(url="http://www.globo.com"))
+#        paths.append(self.url_for(controller="OtherController", action="index"))
+#        paths.append(self.url_for(controller=OtherController, action="index"))
+#        
+#        links = ["<a href='%s'>%s</a>" % (action_url, action_url) for action_url in paths]
+#        return self.render_to_response("<br />".join(links))
 
