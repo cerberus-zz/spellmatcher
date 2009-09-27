@@ -50,3 +50,5 @@ class SpellMatcherContext(object):
     def save(self, model):
         self.session.add(model)
 
+    def query(self, *args, **kw):
+        return self.session.query(*args, **kw)
