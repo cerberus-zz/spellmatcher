@@ -9,7 +9,7 @@ class HomeController(Controller):
     @route("/home")
     def index(self):
         ed_user = RegisteredUser('ed', 'ed@ed.com')
-        self.context.session.add(ed_user)
+        self.context.save(ed_user)
 
         paths = []
         paths.append(self.url_for(action="index"))

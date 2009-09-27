@@ -6,4 +6,3 @@ Base = declarative_base()
 
 class BaseModel(object):
     pass
-

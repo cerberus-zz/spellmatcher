@@ -47,4 +47,6 @@ class SpellMatcherContext(object):
             auto_reload=True
         )
 
+    def save(self, model):
+        self.session.add(model)
 
