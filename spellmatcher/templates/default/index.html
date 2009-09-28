@@ -16,5 +16,17 @@
                 <div class="news-content">${HTML(item.content)}</div>
             </div>
         </div>
+        
+        <form action="${url('/home/register')}" method="post" py:if="not registered">
+            <div class="register-name"><label for="username">Name:</label><input type="text" name="username" value="" id="username" /></div>
+            <div class="register-email"><label for="email">E-mail:</label><input type="text" name="email" value="" id="email" /></div>
+            <p><input type="submit" value="Continue &rarr;" /></p>
+        </form>
+
+        <div py:if="registered">
+            <p>Thanks for registering, ${name}!</p>
+            <p>We'll keep in touch!</p>
+            <p>Spellmatcher Team</p>
+        </div>
     </body>
 </html>

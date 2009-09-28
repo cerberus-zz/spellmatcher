@@ -7,17 +7,22 @@ from spellmatcher.models.feeds import *
 
 class HomeController(Controller):
 
-    @route("/home")
-    def index(self):
+    def load_feeds(self):
         feed = Feed("http://twitter.com/statuses/user_timeline/77633129.rss")
         feed.load()
 
-        ed_user = RegisteredUser('ed', 'ed@ed.com')
-        self.context.save(ed_user)
+        return feed.items
 
-        paths = []
+    @route("/home")
+    def index(self):
+        return self.render_template("index.html", news=self.load_feeds(), registered=False)
 
-        return self.render_template("index.html", news=feed.items)
+    @route("/home/register")
+    def register(self, username, email):
+        new_user = RegisteredUser(username, email)
+        self.context.save(new_user)
+
+        return self.render_template("index.html", news=self.load_feeds(), name=username, email=email, registered=True)
 
 #fica comentado só pra ter exemplos do url_for
 #class OtherController(Controller):

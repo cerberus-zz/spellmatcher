@@ -52,3 +52,6 @@ class SpellMatcherContext(object):
 
     def query(self, *args, **kw):
         return self.session.query(*args, **kw)
+
+    def redirect(self, url):
+        raise cherrypy.HTTPRedirect(url)
