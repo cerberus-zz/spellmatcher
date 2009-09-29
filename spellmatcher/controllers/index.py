@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
+from cherrypy import request
+from recaptcha.client.captcha import submit
+
 from spellmatcher.controllers.base import Controller, route, url
 from spellmatcher.models import RegisteredUser
 from spellmatcher.models.feeds import *
@@ -18,11 +21,34 @@ class HomeController(Controller):
         return self.render_template("index.html", news=self.load_feeds(), registered=False)
 
     @route("/home/register")
-    def register(self, username, email):
+    def register(self, username, email, recaptcha_challenge_field, recaptcha_response_field):
+        error_messages = self.validate(username, email, recaptcha_challenge_field, recaptcha_response_field)
+        if error_messages:
+            return self.render_template("index.html", news=self.load_feeds(), registered=False, error_messages=error_messages)
+
         new_user = RegisteredUser(username, email)
         self.context.save(new_user)
 
         return self.render_template("index.html", news=self.load_feeds(), name=username, email=email, registered=True)
+
+    def validate(self, username, email, recaptcha_challenge_field, recaptcha_response_field):
+        errors = []
+
+        if not username:
+            errors.append("The name field is required.")
+
+        if not email:
+            errors.append("The email field is required.")
+
+        response = submit(recaptcha_challenge_field, 
+                          recaptcha_response_field, 
+                          "6Le4kAgAAAAAAD9bT_OL6sDdhJ0DAzaylDMi47he",
+                          request.remote.ip)
+
+        if not response.is_valid:
+            errors.append("Please write the exact words in the captcha.")
+
+        return errors
 
 #fica comentado só pra ter exemplos do url_for
 #class OtherController(Controller):

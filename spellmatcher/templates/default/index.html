@@ -20,7 +20,33 @@
         <form action="${url('/home/register')}" method="post" py:if="not registered">
             <div class="register-name"><label for="username">Name:</label><input type="text" name="username" value="" id="username" /></div>
             <div class="register-email"><label for="email">E-mail:</label><input type="text" name="email" value="" id="email" /></div>
+            <script>
+            var RecaptchaOptions = {
+               theme : 'white',
+               tabindex : 2
+            };
+            </script>
+
+            <script type="text/javascript"
+               src="http://api.recaptcha.net/challenge?k=6Le4kAgAAAAAAHiUkEKiK1YZHBi-UMNlcZHA6YkU">
+            </script>
+
+            <noscript>
+               <iframe src="http://api.recaptcha.net/noscript?k=6Le4kAgAAAAAAHiUkEKiK1YZHBi-UMNlcZHA6YkU"
+                   height="300" width="500" frameborder="0"></iframe><br />
+               <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+               </textarea>
+               <input type="hidden" name="recaptcha_response_field" 
+                   value="manual_challenge" />
+            </noscript>
+
             <p><input type="submit" value="Continue &rarr;" /></p>
+
+            <div py:if="error_messages">
+                <div py:for="error in error_messages" class="error">
+                    ${error}
+                </div>
+            </div>
         </form>
 
         <div py:if="registered">
