@@ -1,10 +1,14 @@
 body {background:#9c6d44;font-family:Georgia, Arial;}
 
 /*.sm-cia {position:relative}*/
-#sm-doc {background:#9c6d44;}
+#sm-doc {background:#9c6d44;overflow:hidden;padding-top:35px;zoom:1}
 #sm-doc p {padding-bottom:15px}
 
 .sm-logo {position:absolute;z-index:2;}
 .sm-logo a {background:url(../img/logo_spell.png) no-repeat;display:block;height:136px;width:384px;outline:none;text-indent:-9999px;}
 
-.sm-desc {background:url(../img/bkg_desc.png) no-repeat 18px 0;margin-top:120px;padding:30px 40px}
+.sm-desc {background:url(../img/bkg_desc.png) no-repeat 18px 0;height:395px;margin-top:120px;padding:30px 40px}
+
+.sm-news {background:url(../img/bkg_news.png) no-repeat;height:375px;}
+
+.sm-register {background:url(../img/bkg_register.png) no-repeat;height:165px;padding:25px;}
